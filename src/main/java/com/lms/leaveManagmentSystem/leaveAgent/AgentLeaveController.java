@@ -1,4 +1,4 @@
-package com.lms.leaveManagementSystem.Agent.Leave;
+package com.lms.leaveManagmentSystem.leaveAgent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ import com.lms.leaveManagmentSystem.Leave.LeaveService;
 
 
 @RestController
-@RequestMapping("/agents")
+@RequestMapping("/leaves")
 public class AgentLeaveController {
 	@Autowired
 	public AgentLeaveService agentLeaveService;
@@ -25,7 +25,7 @@ public class AgentLeaveController {
 	public LeaveService leaveService;
 	ResponseEntity responseEntity;
 	
-	@PostMapping("/ll/{id}")
+	@PostMapping("/{id}")
     public ResponseEntity requestLeaveForAgent(@PathVariable long id , @RequestBody Leave leave) {
 
     	responseEntity = new ResponseEntity();

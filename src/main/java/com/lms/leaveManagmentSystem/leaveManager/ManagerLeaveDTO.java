@@ -1,4 +1,4 @@
-package com.lms.leaveManagementSystem.Manager.Leave;
+package com.lms.leaveManagmentSystem.leaveManager;
 
 import lombok.Data;
 

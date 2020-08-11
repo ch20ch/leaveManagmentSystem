@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lms.leaveManagementSystem.Agent.Leave.AgentLeaveService;
 import com.lms.leaveManagementSystem.Conf.ResponseEntity;
 import com.lms.leaveManagmentSystem.Leave.Leave;
 import com.lms.leaveManagmentSystem.Leave.LeaveService;
+import com.lms.leaveManagmentSystem.leaveAgent.AgentLeaveService;
 
 
 

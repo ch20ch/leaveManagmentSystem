@@ -1,4 +1,4 @@
-package com.lms.leaveManagementSystem.Agent.Leave;
+package com.lms.leaveManagmentSystem.leaveAgent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,3 +1,4 @@
+package com.lms.leaveManagmentSystem.leaveManager;
 //package com.lms.leaveManagementSystem.Manager.Leave;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
