@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,9 +13,16 @@ import javax.persistence.Id;
 import com.lms.leaveManagementSystem.Conf.LeaveTypesConstants;
 import com.lms.leaveManagementSystem.Conf.StatusLeaveConstants;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity(name="leaves")
 public class Leave{
@@ -34,6 +43,7 @@ public class Leave{
 
  
     @Column
+    @Enumerated(EnumType.ORDINAL)
     private LeaveTypesConstants leaveType;
 
 
@@ -46,6 +56,7 @@ public class Leave{
 
 
     @Column
+    @Enumerated(EnumType.ORDINAL)
     private StatusLeaveConstants status= StatusLeaveConstants.PENDING;
     
     @Column

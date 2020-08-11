@@ -18,7 +18,7 @@ import com.lms.leaveManagmentSystem.Manager.ManagerRepository;
 public class LeaveService {
 	@Autowired
     private LeaveRepository LeaveRepository;
-	@Autowired
+
 
 	
 	public Leave saveLeave(Leave Leave) {

@@ -1,8 +1,13 @@
 package com.lms.leaveManagmentSystem.Agent;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -26,6 +31,19 @@ public class AgentService {
 	public Iterable<Agent> getAllAgent(){
 		return AgentRepository.findAll();
 	}
+	public Page<Agent> getAllAgent(int page, int size, String sortDir, String sort){
+
+		Pageable paging = PageRequest.of(page, size, Sort.Direction.fromString(sortDir), sort);
+		return AgentRepository.findAll(paging);
+	
+	}
+	public Page<Agent> getAllAgent(int page, int size){
+
+		Pageable paging = PageRequest.of(page, size);
+		return AgentRepository.findAll(paging);
+	
+	}
+	
 	
 	public Agent getAgentById(long id) {
 		Optional<Agent> Agent = AgentRepository.findById(id);

@@ -16,11 +16,11 @@ public class AgentLeaveService {
 	@Autowired 
 	private LeaveService leaveService;
 	
-	public  Leave requestLeaveForAgent(long idAgent, Leave leave) {
+	public  Agent requestLeaveForAgent(long idAgent, Leave leave) {
 		Leave lleave = leaveService.saveLeave(leave);
 		Agent agent = agentService.getAgentById(idAgent);
 		agent.getLeaves().add(lleave);
-		agentService.createAgent(agent);
-		return lleave;
+		// agentService.createAgent(agent);
+		return agent;
 	}
 }

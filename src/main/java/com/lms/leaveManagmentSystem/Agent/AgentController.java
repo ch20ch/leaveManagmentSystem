@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lms.leaveManagementSystem.Agent.Leave.AgentLeaveService;
 import com.lms.leaveManagementSystem.Conf.ResponseEntity;
+import com.lms.leaveManagmentSystem.Leave.Leave;
+import com.lms.leaveManagmentSystem.Leave.LeaveService;
 
 
 
@@ -20,12 +24,28 @@ public class AgentController {
 
 	@Autowired
 	private AgentService AgentService;
+	@Autowired
+	private LeaveService leaveService;
 	ResponseEntity responseEntity;
 	
     @GetMapping("/")
     public ResponseEntity getAgents() {
     	responseEntity = new ResponseEntity();
     	return responseEntity.setMessage(AgentService.getAllAgent(),200);
+    }
+    @GetMapping(path = "/", params = { "page", "size" })
+    public ResponseEntity getAgents(@RequestParam("page") int page, 
+    								@RequestParam("size") int size) {
+    	responseEntity = new ResponseEntity();
+    	return responseEntity.setMessage(AgentService.getAllAgent(page,size),200);
+    }
+    @GetMapping(path = "/", params = { "page", "size","sortDir","sort" })
+    public ResponseEntity getAgents(@RequestParam("page") int page, 
+    								@RequestParam("size") int size,
+    								@RequestParam("size") String sortDir,
+    								@RequestParam("size") String sort) {
+    	responseEntity = new ResponseEntity();
+    	return responseEntity.setMessage(AgentService.getAllAgent(page,size,sortDir,sort),200);
     }
     
     @GetMapping("/{id}")
@@ -50,6 +70,18 @@ public class AgentController {
         	return responseEntity.setErrorMessage(e.toString(), 403);
     	}
     }
+    @PostMapping("/leaves")
+	  public ResponseEntity requestLeaveForAgent(@RequestParam long idAgent,@RequestBody Leave leave) {
+	  	responseEntity = new ResponseEntity();
+	  	try {
+	  		Leave lleave = leaveService.saveLeave(leave);
+			Agent agent = AgentService.getAgentById(idAgent);
+			agent.getLeaves().add(lleave);
+	      	return responseEntity.setMessage(agent,200);
+	  	}catch(Exception e) {
+	      	return responseEntity.setErrorMessage(e.toString(), 403);
+	  	}
+	  }
 
 }
 
