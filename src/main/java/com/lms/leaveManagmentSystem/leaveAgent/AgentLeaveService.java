@@ -28,6 +28,11 @@ public class AgentLeaveService {
 	
 		return lleave;
 	}
+	public  Leave updateStatusLeave(long idAgent, Leave leave) {
+		
+		Leave lleave = leaveService.saveLeave(leave);
+		return lleave;
+	}
 	public  List<Leave> getLeavesByAgent(long idAgent) {
 		Agent agent = agentService.getAgentById(idAgent);
 		List<Leave> leaves = leaveService.getLeaveByAgent(agent);

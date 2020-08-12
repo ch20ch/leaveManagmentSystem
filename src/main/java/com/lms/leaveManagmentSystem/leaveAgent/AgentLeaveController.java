@@ -48,7 +48,16 @@ public class AgentLeaveController {
     public ResponseEntity getLeaves() {
     	responseEntity = new ResponseEntity();
     	try {
-        	return responseEntity.setMessage(agentLeaveService.getLeaves().get(0),200);
+        	return responseEntity.setMessage(agentLeaveService.getLeaves(),200);
+    	}catch(Exception e) {
+        	return responseEntity.setErrorMessage(e.toString(), 403);
+    	}
+    }
+	@PostMapping("/")
+    public ResponseEntity updateLeave(@RequestParam long idAgent , @RequestBody Leave leave) {
+    	responseEntity = new ResponseEntity();
+    	try {
+        	return responseEntity.setMessage(agentLeaveService.updateStatusLeave(idAgent, leave),200);
     	}catch(Exception e) {
         	return responseEntity.setErrorMessage(e.toString(), 403);
     	}
