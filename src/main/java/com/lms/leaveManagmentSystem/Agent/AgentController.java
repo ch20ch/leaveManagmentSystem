@@ -70,18 +70,18 @@ public class AgentController {
         	return responseEntity.setErrorMessage(e.toString(), 403);
     	}
     }
-    @PostMapping("/leaves")
-	  public ResponseEntity requestLeaveForAgent(@RequestParam long idAgent,@RequestBody Leave leave) {
-	  	responseEntity = new ResponseEntity();
-	  	try {
-	  		Leave lleave = leaveService.saveLeave(leave);
-			Agent agent = AgentService.getAgentById(idAgent);
-			agent.getLeaves().add(lleave);
-	      	return responseEntity.setMessage(agent,200);
-	  	}catch(Exception e) {
-	      	return responseEntity.setErrorMessage(e.toString(), 403);
-	  	}
-	  }
+//    @PostMapping("/leaves")
+//	  public ResponseEntity requestLeaveForAgent(@RequestParam long idAgent,@RequestBody Leave leave) {
+//	  	responseEntity = new ResponseEntity();
+//	  	try {
+//	  		Leave lleave = leaveService.saveLeave(leave);
+//			Agent agent = AgentService.getAgentById(idAgent);
+//			agent.getLeaves().add(lleave);
+//	      	return responseEntity.setMessage(agent,200);
+//	  	}catch(Exception e) {
+//	      	return responseEntity.setErrorMessage(e.toString(), 403);
+//	  	}
+//	  }
 
 }
 

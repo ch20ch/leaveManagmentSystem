@@ -1,5 +1,7 @@
 package com.lms.leaveManagmentSystem.Manager;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.leaveManagementSystem.Conf.ResponseEntity;
+import com.lms.leaveManagmentSystem.Agent.Agent;
+import com.lms.leaveManagmentSystem.Agent.AgentService;
 import com.lms.leaveManagmentSystem.Manager.Manager;
 import com.lms.leaveManagmentSystem.Manager.ManagerService;
 
@@ -18,6 +22,8 @@ import com.lms.leaveManagmentSystem.Manager.ManagerService;
 public class ManagerController {
 	@Autowired
 	private ManagerService ManagerService;
+	@Autowired
+	private AgentService agentService;
 	ResponseEntity responseEntity;
 	
     @GetMapping("/")
@@ -44,6 +50,16 @@ public class ManagerController {
     	responseEntity = new ResponseEntity();
     	try {
         	return responseEntity.setMessage(ManagerService.createManager(Manager),200);
+    	}catch(Exception e) {
+        	return responseEntity.setErrorMessage(e.toString(), 403);
+    	}
+    }
+
+    @GetMapping("/Agents")
+    public ResponseEntity getAllUsers() {
+    	responseEntity = new ResponseEntity();
+    	try {
+        	return responseEntity.setMessage(agentService.getAllAgent(),200);
     	}catch(Exception e) {
         	return responseEntity.setErrorMessage(e.toString(), 403);
     	}

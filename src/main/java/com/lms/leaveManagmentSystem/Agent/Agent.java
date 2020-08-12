@@ -5,12 +5,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.lms.leaveManagementSystem.Conf.RoleConstants;
 import com.lms.leaveManagmentSystem.Leave.Leave;
 import com.lms.leaveManagmentSystem.User.User;
 
@@ -33,7 +33,7 @@ public class Agent extends User implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 	
-	
+	// @OneToMany(cascade = CascadeType.ALL,mappedBy = "agent",fetch = FetchType.LAZY)
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Leave> leaves;
 }

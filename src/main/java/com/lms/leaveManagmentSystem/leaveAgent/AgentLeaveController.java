@@ -17,7 +17,7 @@ import com.lms.leaveManagmentSystem.Leave.LeaveService;
 
 
 @RestController
-@RequestMapping("/leaves")
+@RequestMapping("/leaves/agents")
 public class AgentLeaveController {
 	@Autowired
 	public AgentLeaveService agentLeaveService;
@@ -35,11 +35,20 @@ public class AgentLeaveController {
         	return responseEntity.setErrorMessage(e.toString(), 403);
     	}
     }
-	@GetMapping("/")
+	@GetMapping("/{id}")
+    public ResponseEntity getLeavesByAgent(@PathVariable long id) {
+    	responseEntity = new ResponseEntity();
+    	try {
+        	return responseEntity.setMessage(agentLeaveService.getLeavesByAgent(id),200);
+    	}catch(Exception e) {
+        	return responseEntity.setErrorMessage(e.toString(), 403);
+    	}
+    }
+	@GetMapping("")
     public ResponseEntity getLeaves() {
     	responseEntity = new ResponseEntity();
     	try {
-        	return responseEntity.setMessage(leaveService.getAllLeave(),200);
+        	return responseEntity.setMessage(agentLeaveService.getLeaves().get(0),200);
     	}catch(Exception e) {
         	return responseEntity.setErrorMessage(e.toString(), 403);
     	}

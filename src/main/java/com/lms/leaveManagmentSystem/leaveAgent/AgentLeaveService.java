@@ -1,5 +1,7 @@
 package com.lms.leaveManagmentSystem.leaveAgent;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,23 @@ public class AgentLeaveService {
 	@Autowired 
 	private LeaveService leaveService;
 	
-	public  Agent requestLeaveForAgent(long idAgent, Leave leave) {
-		Leave lleave = leaveService.saveLeave(leave);
+	public  Leave requestLeaveForAgent(long idAgent, Leave leave) {
 		Agent agent = agentService.getAgentById(idAgent);
-		agent.getLeaves().add(lleave);
-		// agentService.createAgent(agent);
-		return agent;
+		System.out.print("get agent ID "+agent.getId());
+		leave.setAgent(agent);
+		agent.getLeaves().add(leave);
+		Leave lleave = leaveService.saveLeave(leave);
+
+	
+		return lleave;
+	}
+	public  List<Leave> getLeavesByAgent(long idAgent) {
+		Agent agent = agentService.getAgentById(idAgent);
+		List<Leave> leaves = leaveService.getLeaveByAgent(agent);
+		return leaves; 
+	}
+	public  List<Leave> getLeaves() {
+		List<Leave> leaves = leaveService.getAllLeave();
+		return leaves; 
 	}
 }

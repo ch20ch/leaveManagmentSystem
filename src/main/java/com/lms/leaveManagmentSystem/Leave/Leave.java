@@ -1,17 +1,23 @@
 package com.lms.leaveManagmentSystem.Leave;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.lms.leaveManagementSystem.Conf.LeaveTypesConstants;
 import com.lms.leaveManagementSystem.Conf.StatusLeaveConstants;
+import com.lms.leaveManagmentSystem.Agent.Agent;
+import com.lms.leaveManagmentSystem.Manager.Manager;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +31,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Data
 @Entity(name="leaves")
-public class Leave{
+public class Leave implements Serializable{
 
 
 	@Id
@@ -62,7 +68,11 @@ public class Leave{
     @Column
     private String comment;
     
-//    @ManyToOne()
-//    private User user;
-//  
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "agent_id")
+    private Agent agent; 
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private Manager manager; 
 }

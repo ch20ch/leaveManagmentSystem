@@ -28,7 +28,7 @@ public class AgentService {
 		return "deleted successful!";
 	}
 	
-	public Iterable<Agent> getAllAgent(){
+	public List<Agent> getAllAgent(){
 		return AgentRepository.findAll();
 	}
 	public Page<Agent> getAllAgent(int page, int size, String sortDir, String sort){

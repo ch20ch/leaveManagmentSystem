@@ -1,5 +1,7 @@
 package com.lms.leaveManagmentSystem.managerAgent;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,9 @@ public class ManagerAgentService {
 		Agent Agent = AgentService.createAgent(agent);
 		
 		return Agent;
+	}
+	public  List<Agent> getAllAgent() {
+		List<Agent> agents = AgentService.getAllAgent();
+		return agents;
 	}
 }

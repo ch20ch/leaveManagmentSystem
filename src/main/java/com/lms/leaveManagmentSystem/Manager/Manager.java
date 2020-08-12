@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +27,7 @@ public class Manager extends User{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 	
+	//@OneToMany(cascade = CascadeType.ALL,mappedBy = "manager",fetch = FetchType.LAZY)
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Leave> leaves;
 }
