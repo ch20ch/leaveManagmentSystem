@@ -55,15 +55,15 @@ public class ManagerController {
     	}
     }
 
-    @GetMapping("/Agents")
-    public ResponseEntity getAllUsers() {
-    	responseEntity = new ResponseEntity();
-    	try {
-        	return responseEntity.setMessage(agentService.getAllAgent(),200);
-    	}catch(Exception e) {
-        	return responseEntity.setErrorMessage(e.toString(), 403);
-    	}
-    }
+//    @GetMapping("/Agents")
+//    public ResponseEntity getAllUsers() {
+//    	responseEntity = new ResponseEntity();
+//    	try {
+//        	return responseEntity.setMessage(agentService.getAllAgent(),200);
+//    	}catch(Exception e) {
+//        	return responseEntity.setErrorMessage(e.toString(), 403);
+//    	}
+//    }
 
 
 

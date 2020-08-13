@@ -28,6 +28,6 @@ public class Manager extends User{
     private long id;
 	
 	//@OneToMany(cascade = CascadeType.ALL,mappedBy = "manager",fetch = FetchType.LAZY)
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Leave> leaves;
 }

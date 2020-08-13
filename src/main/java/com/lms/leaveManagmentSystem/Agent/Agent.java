@@ -34,6 +34,6 @@ public class Agent extends User implements Serializable{
     private long id;
 	
 	// @OneToMany(cascade = CascadeType.ALL,mappedBy = "agent",fetch = FetchType.LAZY)
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Leave> leaves;
 }
